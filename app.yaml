@@ -1,0 +1,2 @@
+runtime: python36
+entrypoint: python main.py
