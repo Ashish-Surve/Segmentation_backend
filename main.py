@@ -19,7 +19,7 @@ import inference
 import glob
 
 # Set this to 0 when building docker image.
-# Set 1 when debugging on own machine.
+# Set 1 when debugging on own machine or on heroku
 #DEBUG variable
 DEBUG=1
 
@@ -56,7 +56,7 @@ async def get_image(style: str, file: UploadFile = File(...)):
     else:
         name = os.path.join(os.path.sep, f"storage2",f"{str(uuid.uuid4())}.png")
     print(f"name: {name}")
-    # name = file.file.filename
+    name = file.file.filename
     output= output*255
     output = output.astype('uint8')
     #output = cv2.cvtColor(output, cv2.COLOR_GRAY2BGR)

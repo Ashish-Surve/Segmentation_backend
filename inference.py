@@ -205,6 +205,7 @@ def inference(model_name, image_folder_path):
     #     gt_mask=gt_mask,
     #     pr_mask=pr_mask,
     # )
+    del model
     gc.collect()
     return pr_mask,gt_mask
 
