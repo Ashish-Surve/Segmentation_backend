@@ -1,7 +1,8 @@
 # backend/requirements.txt
-
+gunicorn
 fastapi
 uvicorn
+requests
 numpy
 opencv-python
 pillow
@@ -11,6 +12,5 @@ albumentations==0.5.2
 tensorflow-cpu==2.1.0
 h5py<3.0.0
 keras==2.3.1
-uvicorn
 segmentation_models
 aiofiles
