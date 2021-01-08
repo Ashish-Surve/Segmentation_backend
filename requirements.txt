@@ -1,5 +1,5 @@
 # backend/requirements.txt
-gunicorn==19.9.0
+gunicorn
 fastapi
 uvicorn
 uvloop

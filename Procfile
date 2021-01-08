@@ -1,1 +1,1 @@
-web: guincorn -k uvicorn.workers.UvicornWorker main:app
+web: python main.py
