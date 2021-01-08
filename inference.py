@@ -2,6 +2,7 @@ import cv2
 import keras
 import numpy as np
 import matplotlib.pyplot as plt
+import gc
 
 import config
 import cv2
@@ -24,24 +25,9 @@ activation = 'sigmoid' if n_classes == 1 else 'softmax'
 preprocess_input = sm.get_preprocessing(BACKBONE)
 
 # models pre load for faster execution.
-print("Loading Models. This might take some time...")
-modelUnet = sm.Unet(BACKBONE, classes=n_classes, activation=activation)
-model_c = config.STYLES["unet"]
-model_path = os.path.join(f"{config.MODEL_PATH}",f"{model_c}.h5")
-modelUnet.load_weights(model_path)
-print("Loaded Unet.")
 
-modelFPN = sm.FPN(BACKBONE, classes=n_classes, activation=activation) 
-model_c = config.STYLES["featurepyramidnetwork"]
-model_path = os.path.join(f"{config.MODEL_PATH}",f"{model_c}.h5")
-modelFPN.load_weights(model_path)
-print("Loaded FPN.")
 
-modelLinknet = sm.Linknet(BACKBONE, classes=n_classes, activation=activation)
-model_c = config.STYLES["linknet"]
-model_path = os.path.join(f"{config.MODEL_PATH}",f"{model_c}.h5")
-modelLinknet.load_weights(model_path)
-print("Loaded Linknet.")
+
 
 
 # below was the part of the pipline is used for training and preprocessing
@@ -176,10 +162,28 @@ def inference(model_name, image_folder_path):
 
     print(model_name)
     if model_name=="unet":
+        print("Loading Models. This might take some time...")
+        modelUnet = sm.Unet(BACKBONE, classes=n_classes, activation=activation)
+        model_c = config.STYLES["unet"]
+        model_path = os.path.join(f"{config.MODEL_PATH}",f"{model_c}.h5")
+        modelUnet.load_weights(model_path)
+        print("Loaded Unet.")
         model = modelUnet
     elif model_name=="featurepyramidnetwork":
+        modelFPN = sm.FPN(BACKBONE, classes=n_classes, activation=activation) 
+        model_c = config.STYLES["featurepyramidnetwork"]
+        model_path = os.path.join(f"{config.MODEL_PATH}",f"{model_c}.h5")
+        modelFPN.load_weights(model_path)
+        print("Loaded FPN.")
         model = modelFPN
     elif model_name=="linknet":
+        modelLinknet = sm.Linknet(BACKBONE, classes=n_classes, activation=activation)
+        model_c = config.STYLES["linknet"]
+        model_path = os.path.join(f"{config.MODEL_PATH}",f"{model_c}.h5")
+        modelLinknet.load_weights(model_path)
+        print("Loaded Linknet.")
+
+
         model = modelLinknet
             
     # model.load_weights(model_path) 
@@ -201,7 +205,7 @@ def inference(model_name, image_folder_path):
     #     gt_mask=gt_mask,
     #     pr_mask=pr_mask,
     # )
-
+    gc.collect()
     return pr_mask,gt_mask
 
 
