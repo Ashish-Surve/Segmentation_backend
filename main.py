@@ -56,7 +56,6 @@ async def get_image(style: str, file: UploadFile = File(...)):
     else:
         name = os.path.join(os.path.sep, f"storage2",f"{str(uuid.uuid4())}.png")
     print(f"name: {name}")
-    name = file.file.filename
     output= output*255
     output = output.astype('uint8')
     #output = cv2.cvtColor(output, cv2.COLOR_GRAY2BGR)

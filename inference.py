@@ -5,7 +5,6 @@ import matplotlib.pyplot as plt
 import gc
 
 import config
-import cv2
 import segmentation_models as sm
 #import matplotlib.pyplot as plt # remove pyplot after testing phase over
 #import matplotlib.image as mpimg
@@ -182,8 +181,6 @@ def inference(model_name, image_folder_path):
         model_path = os.path.join(f"{config.MODEL_PATH}",f"{model_c}.h5")
         modelLinknet.load_weights(model_path)
         print("Loaded Linknet.")
-
-
         model = modelLinknet
             
     # model.load_weights(model_path) 
