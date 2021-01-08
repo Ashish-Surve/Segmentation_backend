@@ -1,7 +1,9 @@
 # backend/requirements.txt
-gunicorn
+gunicorn==19.9.0
 fastapi
 uvicorn
+uvloop
+httptools
 requests
 numpy
 opencv-python

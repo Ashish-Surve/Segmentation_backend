@@ -1,1 +1,1 @@
-web: python main.py runserver 0.0.0.0:5000
+web: guincorn -w 1 -k uvicorn.workers.UvicornWorker main:app
