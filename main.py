@@ -48,6 +48,7 @@ async def get_image(style: str, file: UploadFile = File(...)):
     # model = config.STYLES[style]
     start = time.time()
     if DEBUG==1:
+        print(os.listdir(os.path.join(f"{config.IMAGE_PATH}","")))
         output, _ = inference.inference(style, os.path.join(f"{config.IMAGE_PATH}",""))
     else:
         output, _ = inference.inference(style, os.path.join(os.path.sep,f"{config.IMAGE_PATH}",""))
@@ -74,6 +75,6 @@ async def get_image(style: str, file: UploadFile = File(...)):
     return FileResponse(name)
 
 
-# if __name__ == "__main__":
-#     port = int(os.environ.get('PORT', 5000))
-#     uvicorn.run("main:app", host="0.0.0.0", port=port)
+if __name__ == "__main__":
+    port = int(os.environ.get('PORT', 5000))
+    uvicorn.run("main:app", host="0.0.0.0", port=port)
