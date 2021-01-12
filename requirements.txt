@@ -7,7 +7,7 @@ httptools
 requests
 numpy
 opencv-python
-pillow
+Pillow
 python-multipart
 scipy==1.4.1
 albumentations==0.5.2
